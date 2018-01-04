@@ -1,2 +1,8 @@
-# ML_snippets
-Little chunks of code I've developed for machine-learning-related tasks
+# ML snippets
+## Importance 
+## Permutation importance
+## Graphs & metrics
+## 2 AUC significance test
+## Custom confusion matrix
+## Individual-level visualization
+
