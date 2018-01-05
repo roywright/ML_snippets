@@ -1,8 +1,2 @@
 # ML snippets
-## Importance 
-## Permutation importance
-## Graphs & metrics
-## 2 AUC significance test
-## Custom confusion matrix
-## Individual-level visualization
-
+Code I've developed for some of the weird/interesting/cool things I've done (mostly at work) involving machine learning. The core code is in `ML_snippets.py` and usage examples are shown in `demos.ipynb`
