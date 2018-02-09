@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+# Original code by Ando Saabas:
+# https://github.com/andosa/treeinterpreter
+# Additional functionality added by Roy Wright
+#           (additions marked with "RW ADDED")
+
 import numpy as np
 import sklearn
 
