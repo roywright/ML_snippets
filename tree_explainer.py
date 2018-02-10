@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
-# Original code by Ando Saabas:
+# Original package by Ando Saabas:
 # https://github.com/andosa/treeinterpreter
 # Additional functionality added by Roy Wright
 #           (additions marked with "RW ADDED")
+# To do:
+#   * Consider a more sophisticated condition for 
+#       thresholds (lines 105 and 124)
+#   * Check how the "joint_contribution" keyword 
+#       interacts with the new functionality
 
 import numpy as np
 import sklearn
@@ -106,7 +111,6 @@ def _predict_tree(model, X, joint_contribution=False):
 
         for row, leaf in enumerate(leaves):
             thresholds.append([None] * X.shape[1])   # RW ADDED
-
             for path in paths:
                 if leaf == path[-1]:
                     break
@@ -143,11 +147,12 @@ def _predict_forest(model, X, joint_contribution=False):
         
         for tree in model.estimators_:
             pred, bias, contribution, th = _predict_tree(tree, X, joint_contribution=joint_contribution)
-
+                                      # RW ADDED
+                
             biases.append(bias)
             contributions.append(contribution)
             predictions.append(pred)
-            thresholds.append(th)
+            thresholds.append(th)   # RW ADDED
         
         total_contributions = []
         
@@ -169,7 +174,8 @@ def _predict_forest(model, X, joint_contribution=False):
             total_contributions)
     else:
         for tree in model.estimators_:
-            pred, bias, contribution, th = _predict_tree(tree, X)  # RW ADDED
+            pred, bias, contribution, th = _predict_tree(tree, X) 
+                                     # RW ADDED
 
             biases.append(bias)
             contributions.append(contribution)
@@ -238,7 +244,7 @@ def predict(model, X, joint_contribution=False):
 
         
         
-def predict_explain(rf, X, num_reasons = 2):  # RW ADDED (ENTIRE METHOD)
+def predict_explain(rf, X, num_reasons = 2):  # RW ADDED (entire method)
     '''
     Produce scores and explanations for an entire data frame.
         * `rf` is a RandomForestClassifier,
