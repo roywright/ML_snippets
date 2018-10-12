@@ -199,8 +199,8 @@ def plot_cumlift(clf, Xtest, ytest, show_spf = False):
     )
     plt.xlabel('% from top')
     plt.ylabel('Cumulative lift')
-    vals = plt.gca().get_xticks()
-    plt.gca().set_xticklabels(['{:3.0f}%'.format(x*100) for x in vals])
+    vals = plt.gca().get_xticks()[1:-1]
+    plt.xticks(vals, ['{:3.0f}%'.format(x*100) for x in vals])
     plt.title('Cumulative Lift Chart')
     if show_spf:
         plt.plot(xplot, spf(xplot), lw = 2, c='red', zorder = 42)
